@@ -30,10 +30,10 @@
             margin: 0; padding: 0;
             text-align: center;
             overflow-x: hidden;
-            overflow-y: hidden; /* Terkunci sampai tombol diklik */
+            overflow-y: hidden;
         }
 
-        /* --- COVER SECTION (GLASSMORPHISM) --- */
+        /* --- COVER SECTION --- */
         #cover-page {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 9999; display: flex; justify-content: center; align-items: center;
@@ -59,7 +59,22 @@
 
         .section { padding: 80px 20px; position: relative; overflow: hidden; }
 
-        /* Elegant Floating Photo Section */
+        /* --- EFEK KERLAP KERLIP SCROLL --- */
+        .scroll-sparkle {
+            position: fixed;
+            width: 4px; height: 4px;
+            background-color: #FFF;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #FDF5A9, 0 0 20px 2px #D4AF37;
+            pointer-events: none;
+            z-index: 9998; /* Di bawah tombol musik */
+            animation: floatUp 2s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-120px) scale(0.3); }
+        }
+
         .photo-frame {
             width: 280px; height: 380px; margin: 0 auto 40px;
             border: 8px solid #fff; border-radius: 150px 150px 0 0;
@@ -77,34 +92,32 @@
             box-shadow: 0 10px 40px rgba(168, 106, 96, 0.08);
             border: 1px solid #eee;
         }
-        /* Floral Ornaments */
-        .floral { position: absolute; width: 120px; opacity: 0.4; pointer-events: none; }
-        .floral-tr { top: -10px; right: -10px; transform: rotate(90deg); }
-        .floral-bl { bottom: -10px; left: -10px; transform: rotate(-90deg); }
+
+        /* --- PERBAIKAN HIASAN BUNGA (100% ANTI PECAH) --- */
+        .floral-ornament { 
+            position: absolute; width: 100px; height: 100px; opacity: 0.25; pointer-events: none; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23D4AF37" d="M10,0 Q30,40 0,60 Q40,30 60,0 Z M50,0 Q60,30 90,10 Q60,50 100,50 Q70,70 90,100 Q50,70 10,90 Q30,60 0,50 Q40,40 50,0 Z"/></svg>');
+            background-size: contain; background-repeat: no-repeat;
+        }
+        .floral-tr { top: 10px; right: 10px; transform: rotate(90deg); }
+        .floral-bl { bottom: 10px; left: 10px; transform: rotate(-90deg); }
 
         .quote { font-family: 'Playfair Display', serif; font-style: italic; line-height: 1.8; font-size: 1.1em; color: var(--dusty-rose); }
 
-        /* Event Details */
         .event-box { border-bottom: 1px dashed var(--soft-gold); padding: 25px 0; }
         .event-box:last-child { border: none; }
         .event-box h3 { font-family: 'Playfair Display', serif; text-transform: uppercase; letter-spacing: 2px; font-size: 1.3em; margin-bottom: 10px; }
 
-        /* Maps & QR */
         .map-section { background: #FDF9F6; border-radius: 15px; padding: 30px 15px; margin-top: 30px; border: 1px solid var(--soft-gold); }
         .qr-code { background: #fff; padding: 10px; display: inline-block; border-radius: 10px; margin-bottom: 15px; }
 
-        /* Banking */
         .bank-card {
             background: linear-gradient(135deg, #fff 0%, #FAF7F2 100%);
             border: 1px solid var(--soft-gold); border-radius: 15px;
             padding: 25px; margin: 15px 0; display: flex; justify-content: space-between; align-items: center;
         }
-        .btn-copy {
-            background: var(--dusty-rose); color: #fff; border: none;
-            padding: 10px 20px; border-radius: 25px; cursor: pointer; font-size: 0.8em;
-        }
+        .btn-copy { background: var(--dusty-rose); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-size: 0.8em; }
 
-        /* Music Floating Button */
         #music-btn {
             position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px;
             background: #fff; border: 2px solid var(--soft-gold); border-radius: 50%;
@@ -116,11 +129,10 @@
             background: var(--soft-gold); color: #fff; border: none;
             padding: 15px 35px; border-radius: 30px; font-family: 'Montserrat', sans-serif;
             font-weight: 600; cursor: pointer; letter-spacing: 2px; margin-top: 20px;
-            transition: 0.3s;
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
         .btn-buka:hover { background: var(--dusty-rose); transform: scale(1.05); }
 
-        /* Animation class */
         .reveal-item { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
         .reveal-item.active { opacity: 1; transform: translateY(0); }
     </style>
@@ -134,7 +146,7 @@
             <h1>Huda & Ajeng</h1>
             <div style="margin: 25px 0;">
                 <p style="font-size: 0.9em; opacity: 0.8;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-                <h3 id="guest-name" style="font-family: 'Playfair Display', serif; font-size: 1.4em; margin: 5px 0;">Tamu Undangan</h3>
+                <h3 id="guest-name" style="font-family: 'Playfair Display', serif; font-size: 1.4em; margin: 5px 0; color: #fff;">Tamu Undangan</h3>
             </div>
             <button class="btn-buka" onclick="openInvitation()">BUKA UNDANGAN</button>
         </div>
@@ -151,15 +163,15 @@
         
         <section class="section">
             <div class="photo-frame reveal-item">
-                <img src="1000506896.jpg" alt="Fanni & Ajeng">
+                <img src="1000506896.jpg" alt="Huda & Ajeng">
             </div>
             <div class="card reveal-item">
-                <img src="https://www.transparentpng.com/download/floral/rose-gold-floral-decoration-free-png-tA6eYj.png" class="floral floral-tr">
+                <div class="floral-ornament floral-tr"></div>
                 <p class="quote">
                     "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."<br><br>
                     <strong>(QS. Ar-Rum: 21)</strong>
                 </p>
-                <img src="https://www.transparentpng.com/download/floral/rose-gold-floral-decoration-free-png-tA6eYj.png" class="floral floral-bl">
+                <div class="floral-ornament floral-bl"></div>
             </div>
         </section>
 
@@ -182,24 +194,24 @@
                 
                 <div class="event-box">
                     <h3>Akad Nikah</h3>
-                    <p><strong>Jumat, 25 Desember 2026</strong><br>09.00 WIB - Selesai</p>
+                    <p><strong>Jumat, 25 Desember 2026</strong></p>
                 </div>
 
                 <div class="event-box">
                     <h3>Resepsi</h3>
-                    <p><strong>Sabtu, 26 Desember 2026</strong><br>11.00 WIB - Selesai</p>
+                    <p><strong>Sabtu, 26 Desember 2026</strong></p>
                 </div>
 
                 <div class="map-section">
                     <p style="font-weight:600;">Lokasi Acara:</p>
-                    <p>Banjarjo Bangsri RT 2 RW 11, Kec. Nglegok, Kab. Blitar</p>
+                    <p>Banjarjo Bangsri RT 2 RW 11<br>Kec. Nglegok, Kab. Blitar</p>
                     
                     <div class="qr-code">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.app.goo.gl/992a3PQUDwbVCVTy5" width="130">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.app.goo.gl/992a3PQUDwbVCVTy5" width="130" alt="QR Map">
                     </div>
                     <br>
                     <a href="https://maps.app.goo.gl/992a3PQUDwbVCVTy5" target="_blank" style="text-decoration:none;">
-                        <button class="btn-buka">LIHAT GOOGLE MAPS</button>
+                        <button class="btn-buka" style="font-size: 0.8em; padding: 12px 25px;">Buka Google Maps</button>
                     </a>
                 </div>
             </div>
@@ -220,25 +232,25 @@
                 
                 <div class="bank-card">
                     <div style="text-align:left;">
-                        <p style="font-weight:bold; margin:0;">BANK BRI</p>
-                        <p id="bri" style="margin:5px 0; font-size:1.2em;">202828299</p>
+                        <p style="font-weight:bold; margin:0; color:#00529C;">BANK BRI</p>
+                        <p id="bri" style="margin:5px 0; font-size:1.2em; font-weight:bold;">202828299</p>
                         <p style="font-size:0.8em; margin:0;">a.n AJENG DIANTI RATNA</p>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri')">SALIN</button>
+                    <button class="btn-copy" onclick="copyText('bri')">Salin</button>
                 </div>
 
                 <div class="bank-card">
                     <div style="text-align:left;">
-                        <p style="font-weight:bold; margin:0;">BANK BNI</p>
-                        <p id="bni" style="margin:5px 0; font-size:1.2em;">72927289</p>
+                        <p style="font-weight:bold; margin:0; color:#F06110;">BANK BNI</p>
+                        <p id="bni" style="margin:5px 0; font-size:1.2em; font-weight:bold;">72927289</p>
                         <p style="font-size:0.8em; margin:0;">a.n FANNI KHOIRUL HUDA</p>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bni')">SALIN</button>
+                    <button class="btn-copy" onclick="copyText('bni')">Salin</button>
                 </div>
             </div>
         </section>
 
-        <footer style="padding: 50px 20px; background: var(--bg-cream); opacity: 0.7;">
+        <footer style="padding: 50px 20px 80px 20px; background: var(--bg-cream); opacity: 0.8;">
             <h1 class="script-font" style="font-size: 2.5em;">Huda & Ajeng</h1>
             <p style="font-size: 0.8em;">Sampai jumpa di hari bahagia kami!</p>
         </footer>
@@ -246,26 +258,30 @@
     </div>
 
     <script>
-        // Guest Name from URL
+        // Set Nama Tamu
         const urlParams = new URLSearchParams(window.location.search);
         const to = urlParams.get('to');
         if (to) { document.getElementById('guest-name').innerText = to; }
 
+        let isOpened = false;
+
         function openInvitation() {
             document.getElementById('cover-page').classList.add('open');
             document.getElementById('main-content').classList.add('reveal');
-            document.body.style.overflowY = 'auto';
+            document.body.style.overflowY = 'auto'; // Mengizinkan scroll
             
             const audio = document.getElementById('bgm');
-            audio.play();
+            audio.play().catch(e => console.log("Audio play diizinkan setelah interaksi"));
             isPlaying = true;
             document.getElementById('music-btn').style.display = 'flex';
             
-            // Trigger animation for items
-            reveal();
+            isOpened = true;
+            reveal(); // Munculkan elemen yang langsung terlihat
+            
+            // Hapus layar sampul setelah animasi selesai agar link di bawahnya bisa diklik
+            setTimeout(() => { document.getElementById('cover-page').style.display = 'none'; }, 1500);
         }
 
-        // Music Toggle
         let isPlaying = false;
         function toggleMusic() {
             const audio = document.getElementById('bgm');
@@ -275,26 +291,54 @@
             isPlaying = !isPlaying;
         }
 
-        // Copy Text
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text);
             alert("Nomor Rekening berhasil disalin!");
         }
 
-        // Reveal Animation on Scroll
+        // Animasi Elemen Muncul Saat di-Scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal-item");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
+                var elementVisible = 100;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
+
+        // --- SISTEM KERLAP-KERLIP SAAT SCROLL ---
+        let lastScrollTop = 0;
+        window.addEventListener("scroll", function() {
+            // Hanya aktifkan debu peri jika undangan sudah dibuka
+            if (!isOpened) return; 
+
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Jika user scroll lumayan jauh (mencegah lag jika terlalu banyak titik)
+            if (Math.abs(currentScroll - lastScrollTop) > 15) { 
+                createScrollSparkle();
+                lastScrollTop = currentScroll;
+            }
+        });
+
+        function createScrollSparkle() {
+            let sparkle = document.createElement('div');
+            sparkle.className = 'scroll-sparkle';
+            // Posisi acak dari kiri ke kanan layar
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            // Mulai dari bagian bawah layar (mengikuti area yang sedang dilihat)
+            sparkle.style.bottom = '-10px';
+            
+            document.body.appendChild(sparkle);
+            
+            // Hapus elemen debu setelah 2 detik agar memori browser tidak penuh
+            setTimeout(() => { sparkle.remove(); }, 2000);
+        }
     </script>
 </body>
 </html>
