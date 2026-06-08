@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Huda & Ajeng - Monochrome Edition</title>
+    <title>Undangan Pernikahan Huda & Ajeng</title>
     
     <meta property="og:title" content="The Wedding of Huda & Ajeng">
-    <meta property="og:description" content="Kami mengundang Anda untuk merayakan cinta kami di Blitar.">
+    <meta property="og:description" content="Kami mengundang Anda untuk merayakan cinta kami.">
     <meta property="og:image" content="1000506896.jpg">
     <meta property="og:type" content="website">
 
@@ -14,16 +14,12 @@
     
     <style>
         :root {
-            /* Warna Monokrom */
+            /* Tema Monokrom Mewah */
             --bg-black: #0F0A08;
-            --bg-dark-gray: #1A120E;
             --soft-gray: #FAF7F2;
             --text-dark: #3E302D;
-            --text-light: #FDF5A9;
             --silver: #E0E0E0;
-            --glass: rgba(255, 255, 255, 0.05);
-            /* Aksen Monokrom */
-            --monochrome-accent: #E0E0E0;
+            --dusty-rose: #A86A60; /* Sedikit aksen hangat untuk teks penting */
         }
 
         * { box-sizing: border-box; }
@@ -35,17 +31,16 @@
             margin: 0; padding: 0;
             text-align: center;
             overflow-x: hidden;
-            overflow-y: hidden; /* Dikunci sebelum tombol diklik */
-            /* Motif background halus untuk bagian dalam */
+            overflow-y: hidden; /* Dikunci sebelum undangan dibuka */
+            /* Motif background lingkaran halus */
             background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="%23E0E0E0" stroke-width="0.3" fill="none" opacity="0.05"/></svg>');
         }
 
-        /* --- HALAMAN SAMPUL BARU (GLASSMORPHISM) --- */
+        /* --- HALAMAN SAMPUL KACA (GLASSMORPHISM) --- */
         #cover-page {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 9999; display: flex; justify-content: center; align-items: center;
             overflow: hidden;
-            /* Animasi Slide Up & Fade Out saat dibuka */
             transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
         }
 
@@ -57,17 +52,16 @@
 
         .cover-glass-frame {
             position: relative; z-index: 10;
-            background: rgba(255, 255, 255, 0.05); /* Efek Kaca Blur */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Bingkai Monokrom Transparan */
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
             padding: 50px 30px;
             width: 85%; max-width: 450px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
 
-        /* Dekorasi Sudut pada Bingkai Kaca */
         .cover-glass-frame::before, .cover-glass-frame::after {
             content: ''; position: absolute; width: 40px; height: 40px; border: 1px solid var(--silver); pointer-events: none;
         }
@@ -75,102 +69,90 @@
         .cover-glass-frame::after { bottom: 15px; right: 15px; border-top: none; border-left: none; }
 
         .cover-content { color: #fff; }
-
         #cover-page.open { transform: translateY(-100vh); opacity: 0; pointer-events: none; }
 
-        /* --- ISI UNDANGAN UTAMA (MUNCUL HALUS) --- */
+        /* --- ISI UNDANGAN UTAMA --- */
         #isi-undangan {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        #isi-undangan.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        #isi-undangan.reveal { opacity: 1; transform: translateY(0); }
 
-        /* --- EFEK KERLAP KERLIP SCROLL --- */
+        /* --- EFEK KERLAP KERLIP (FAIRY DUST) --- */
         .scroll-sparkle {
-            position: fixed;
-            width: 3px; height: 3px;
-            background-color: #FFF;
-            border-radius: 50%;
-            box-shadow: 0 0 8px 1px #FFF, 0 0 15px 1px #FFF;
-            pointer-events: none;
-            z-index: 9998; /* Di bawah tombol musik */
-            animation: floatUp 2s ease-out forwards;
+            position: fixed; width: 3px; height: 3px; background-color: #FFF; border-radius: 50%;
+            box-shadow: 0 0 8px 1px #FFF, 0 0 15px 1px #FFF; pointer-events: none;
+            z-index: 9998; animation: floatUp 2s ease-out forwards;
         }
         @keyframes floatUp {
             0% { opacity: 1; transform: translateY(0) scale(1); }
             100% { opacity: 0; transform: translateY(-120px) scale(0.3); }
         }
 
-        /* Hiasan Ekstra pada Dalam Undangan */
+        /* --- TIPOGRAFI & DEKORASI --- */
         h1, h2 { font-family: 'Cinzel', serif; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
         .nama-mempelai { font-family: 'Great Vibes', cursive; font-size: 4.5em; text-transform: none; background: #fff; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: normal; margin: 10px 0; }
         
-        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(62, 48, 45, 0.8), rgba(168, 106, 96, 0.7)), url('1000506896.jpg') center/cover no-repeat; color: #ffffff; padding: 20px; box-sizing: border-box; }
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(30, 20, 20, 0.8), rgba(20, 15, 15, 0.7)), url('1000506896.jpg') center/cover no-repeat; color: #ffffff; padding: 20px; box-sizing: border-box; }
         .hero::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid var(--silver); pointer-events: none; opacity: 0.6; }
         .hero::after { content: ''; position: absolute; top: 25px; left: 25px; right: 25px; bottom: 25px; border: 1px dashed var(--silver); pointer-events: none; opacity: 0.6; }
         
-        .hero p.the-wedding { letter-spacing: 6px; font-size: 1.1em; margin-bottom: 0; color: #FDF5A9; font-family: 'Cinzel', serif; }
+        .hero p.the-wedding { letter-spacing: 6px; font-size: 1.1em; margin-bottom: 0; color: #E0E0E0; font-family: 'Cinzel', serif; }
         .hero .date { font-size: 1.2em; letter-spacing: 3px; border-top: 1px solid var(--silver); border-bottom: 1px solid var(--silver); padding: 10px 0; margin-top: 20px; }
 
         .section { padding: 80px 20px; position: relative; }
         
-        /* Kartu dengan Hiasan Tambahan */
+        /* KARTU KONTEN */
         .card { background: #ffffff; border-radius: 10px; padding: 60px 40px; margin: 20px auto; max-width: 600px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #eee; }
         .card::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid #ddd; opacity: 0.3; pointer-events: none; }
         
-        /* Ornamen Mahkota Bunga pada Atas Kartu */
-        .card-crown { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 80px; height: 50px; background-color: var(--soft-gray); display: flex; justify-content: center; align-items: center; border-radius: 50px; }
-        .card-crown svg { width: 40px; height: auto; }
-
-        /* --- PERBAIKAN HIASAN MAWAR MONOKROM (100% ANTI PECAH) --- */
+        /* MAWAR SVG ANTI PECAH */
         .floral-ornament { 
             position: absolute; width: 100px; height: 100px; opacity: 0.25; pointer-events: none; 
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23E0E0E0" d="M10,0 Q30,40 0,60 Q40,30 60,0 Z M50,0 Q60,30 90,10 Q60,50 100,50 Q70,70 90,100 Q50,70 10,90 Q30,60 0,50 Q40,40 50,0 Z"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23A0A0A0" d="M10,0 Q30,40 0,60 Q40,30 60,0 Z M50,0 Q60,30 90,10 Q60,50 100,50 Q70,70 90,100 Q50,70 10,90 Q30,60 0,50 Q40,40 50,0 Z"/></svg>');
             background-size: contain; background-repeat: no-repeat;
         }
         .floral-tr { top: 10px; right: 10px; transform: rotate(90deg); }
         .floral-bl { bottom: 10px; left: 10px; transform: rotate(-90deg); }
 
-        h2 { color: var(--dusty-rose); font-size: 2.2em; margin-bottom: 10px; }
+        h2 { color: var(--text-dark); font-size: 2.2em; margin-bottom: 10px; }
         h3 { font-family: 'Cinzel', serif; color: var(--text-dark); font-size: 1.5em; margin: 15px 0; }
         .quote { font-style: italic; max-width: 500px; margin: 0 auto; line-height: 2; color: var(--dusty-rose); font-size: 1.1em; }
 
-        /* Desain QR Code & Map */
+        /* QR CODE & MAP (HTTPS FIXED) */
         .qr-wrapper { background: #fff; padding: 15px; border-radius: 10px; display: inline-block; border: 1px solid #ddd; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin: 20px 0; }
         .qr-image { width: 150px; height: 150px; }
-        .map-btn { display: inline-block; text-decoration: none; background: var(--gold-gradient); color: #fff; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-family: 'Montserrat', sans-serif; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); transition: 0.3s; margin-top: 10px; }
+        .map-btn { display: inline-block; text-decoration: none; background: #000; color: #fff; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-family: 'Montserrat', sans-serif; box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: 0.3s; margin-top: 10px; border: 1px solid #333; }
+        .map-btn:hover { background: #333; }
         
-        .bank-card {
-            background: linear-gradient(135deg, #fff 0%, #FAF7F2 100%);
-            border: 1px solid #ddd; border-radius: 10px;
-            padding: 25px; margin: 20px 0; display: flex; justify-content: space-between; align-items: center;
-        }
+        .bank-card { background: linear-gradient(135deg, #fff 0%, #FAF7F2 100%); border: 1px solid #ddd; border-radius: 10px; padding: 25px; margin: 20px 0; display: flex; justify-content: space-between; align-items: center; }
         .copy-btn { background: var(--text-dark); color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.8em; transition: 0.3s; }
+        .copy-btn:hover { background: #000; }
 
-        #music-control { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; border-radius: 50%; background: rgba(255,255,255,0.9); border: 2px solid var(--soft-gold); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 100; animation: pulse-btn 2s infinite; }
-        #music-icon { color: var(--soft-gold); font-size: 1.5em; }
+        /* TOMBOL MUSIK & BUKA UNDANGAN */
+        #music-control { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; border-radius: 50%; background: rgba(255,255,255,0.9); border: 2px solid var(--text-dark); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 100; animation: pulse-btn 2s infinite; }
+        #music-icon { color: var(--text-dark); font-size: 1.5em; }
 
         #btn-buka { padding: 16px 45px; font-family: 'Cinzel', serif; font-size: 1.1em; font-weight: 700; letter-spacing: 2px; background: transparent; color: #fff; border: 1px solid var(--silver); border-radius: 5px; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 5px 25px rgba(0,0,0,0.5); }
         #btn-buka:hover { background: var(--silver); color: #000; box-shadow: 0 8px 30px rgba(0,0,0,0.7); }
+        
+        .reveal-item { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+        .reveal-item.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
     <div id="cover-page">
         <div class="cover-bg"></div>
-        
         <div class="cover-glass-frame">
             <div class="cover-content">
-                <p style="letter-spacing: 4px; font-size: 1em; color: #FDF5A9; margin-bottom: 0; font-family: 'Cinzel', serif;">THE WEDDING OF</p>
+                <p style="letter-spacing: 4px; font-size: 1em; color: #E0E0E0; margin-bottom: 0; font-family: 'Cinzel', serif;">THE WEDDING OF</p>
                 <h1 class="nama-mempelai" style="font-size: 4.5em; margin: 10px 0; color:#fff;">Huda & Ajeng</h1>
                 
                 <div style="margin: 30px 0;">
                     <p style="font-style: italic; color: #ddd; font-size: 0.9em; margin-bottom: 5px;">Kepada Yth.</p>
-                    <h2 id="nama-tamu-placeholder" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 1.4em; margin: 0;">Bapak / Ibu / Saudara / i</h2>
+                    <h2 id="nama-tamu-placeholder" style="font-family: 'Cinzel', serif; color: #fff; font-size: 1.4em; margin: 0;">Bapak / Ibu / Saudara / i</h2>
                 </div>
 
                 <button id="btn-buka" onclick="bukaUndangan()">
@@ -192,7 +174,7 @@
         <div class="hero">
             <p class="the-wedding">THE WEDDING OF</p>
             <h1 class="nama-mempelai" style="color:#fff;">Huda & Ajeng</h1>
-            <p class="date">25 . 12 . 2026 &nbsp;&bull;&nbsp; 26 . 12 . 2026</p>
+            <p class="date">25 . 12 . 2026  •  26 . 12 . 2026</p>
         </div>
 
         <div class="section">
@@ -208,48 +190,48 @@
 
         <div class="section" style="background-color: var(--soft-gray);">
             <h2>Sang Mempelai</h2>
-            <div class="card">
+            <div class="card reveal-item">
                 <div class="floral-ornament floral-tr"></div>
                 
-                <img src="1000506896.jpg" style="width:130px; height:130px; border-radius:50%; object-fit:cover; border:5px solid #fff; box-shadow:0 10px 25px rgba(0,0,0,0.1); margin-bottom:20px;">
+                <img src="1000506896.jpg" style="width:130px; height:130px; border-radius:50%; object-fit:cover; border:5px solid #fff; box-shadow:0 10px 25px rgba(0,0,0,0.1); margin-bottom:20px;" alt="Mempelai">
                 
                 <h1 class="nama-mempelai" style="font-size: 3.5em; color:var(--text-dark);">Fanni Khoirul Huda</h1>
-                <p>Putra dari<br><strong>Bapak Agus Wiyono & Ibu Erna Hastuti Ningsih</strong></p>
+                <p style="color:var(--text-dark);">Putra dari<br><strong>Bapak Agus Wiyono & Ibu Erna Hastuti Ningsih</strong></p>
                 
-                <h3 style="color: var(--soft-gold); font-size: 2.2em; font-family: 'Great Vibes', cursive; margin: 20px 0;">dengan</h3>
+                <h3 style="color: var(--text-dark); font-size: 2.2em; font-family: 'Great Vibes', cursive; margin: 20px 0;">dengan</h3>
                 
                 <h1 class="nama-mempelai" style="font-size: 3.5em; color:var(--text-dark);">Ajeng Dianti Ratna</h1>
-                <p>Putri dari<br><strong>Bapak Dian Dwi Setyobudi & Ibu Susiati</strong></p>
+                <p style="color:var(--text-dark);">Putri dari<br><strong>Bapak Dian Dwi Setyobudi & Ibu Susiati</strong></p>
                 
                 <div class="floral-ornament floral-bl"></div>
             </div>
         </div>
 
         <div class="section">
-            <h2>Jadwal & Lokasi Bahagia</h2>
-            <div class="card">
+            <h2>Jadwal & Lokasi</h2>
+            <div class="card reveal-item">
                 <div class="floral-ornament floral-tr"></div>
                 
                 <h3>Akad Nikah</h3>
                 <p style="font-size: 1.2em; color: var(--dusty-rose);"><strong>Jumat, 25 Desember 2026</strong></p>
                 
-                <hr style="border-top: 1px dashed var(--soft-gold); margin: 20px 0;">
+                <hr style="border-top: 1px dashed var(--silver); margin: 20px 0;">
                 
                 <h3>Resepsi Pernikahan</h3>
                 <p style="font-size: 1.2em; color: var(--dusty-rose);"><strong>Sabtu, 26 Desember 2026</strong></p>
                 
-                <hr style="border-top: 1px solid var(--soft-gold); margin: 30px 0;">
+                <hr style="border-top: 1px solid var(--silver); margin: 30px 0;">
                 
                 <h3 style="margin-bottom: 5px;">Lokasi Acara Kediaman</h3>
-                <p>Rumah Ajeng Klepon</p>
-                <p>Banjarjo Bangsri RT 2 RW 11<br>Kecamatan Nglegok, Kabupaten Blitar</p>
+                <p style="color:var(--text-dark);">Rumah Ajeng Klepon</p>
+                <p style="color:var(--text-dark);">Banjarjo Bangsri RT 2 RW 11<br>Kecamatan Nglegok, Kabupaten Blitar</p>
                 
                 <div class="qr-wrapper">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.app.goo.gl/992a3PQUDwbVCVTy5" alt="QR Code Lokasi" class="qr-image">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Banjarjo+Bangsri+rt+2+rw+11+kecamatan+nglegok,+kabupaten+blitar" alt="QR Code Lokasi" class="qr-image">
                 </div>
                 <br>
-                <a href="https://maps.app.goo.gl/992a3PQUDwbVCVTy5" target="_blank" class="map-btn" style="background:#000; border:1px solid #ddd; color:#fff;">
-                    📍 Buka Google Maps Blitar
+                <a href="https://maps.google.com/?q=Banjarjo+Bangsri+rt+2+rw+11+kecamatan+nglegok,+kabupaten+blitar" target="_blank" class="map-btn">
+                    📍 Buka Google Maps
                 </a>
                 
                 <div class="floral-ornament floral-bl"></div>
@@ -258,24 +240,24 @@
 
         <div class="section" style="background-color: var(--soft-gray);">
             <h2>Tanda Kasih Digital</h2>
-            <div class="card">
+            <div class="card reveal-item">
                 <div class="floral-ornament floral-tr"></div>
-                <p style="font-size:0.9em;">Doa restu Anda merupakan karunia terindah. Anda dapat mengirimkan tanda kasih secara cashless melalui rekening berikut:</p>
+                <p style="font-size:0.9em; color:var(--text-dark);">Doa restu Anda merupakan karunia terindah. Anda dapat mengirimkan tanda kasih secara cashless melalui rekening berikut:</p>
                 
                 <div class="bank-card">
-                    <div class="bank-details">
-                        <p style="color: #00529C; font-weight:bold;">Bank BRI</p>
-                        <p id="bri-number" style="font-size: 1.3em; font-weight: bold; color: var(--text-dark);">202828299</p>
-                        <p style="font-size: 0.8em; color:var(--text-dark);">a.n. AJENG DIANTI RATNA</p>
+                    <div class="bank-details" style="text-align: left;">
+                        <p style="color: #00529C; font-weight:bold; margin:0;">Bank BRI</p>
+                        <p id="bri-number" style="font-size: 1.3em; font-weight: bold; color: var(--text-dark); margin:5px 0;">202828299</p>
+                        <p style="font-size: 0.8em; color:var(--text-dark); margin:0;">a.n. AJENG DIANTI RATNA</p>
                     </div>
                     <button class="copy-btn" onclick="copyText('bri-number')">Salin</button>
                 </div>
                 
                 <div class="bank-card">
-                    <div class="bank-details">
-                        <p style="color: #F06110; font-weight:bold;">Bank BNI</p>
-                        <p id="bni-number" style="font-size: 1.3em; font-weight: bold; color: var(--text-dark);">72927289</p>
-                        <p style="font-size: 0.8em; color:var(--text-dark);">a.n. FANNI KHOIRUL HUDA</p>
+                    <div class="bank-details" style="text-align: left;">
+                        <p style="color: #F06110; font-weight:bold; margin:0;">Bank BNI</p>
+                        <p id="bni-number" style="font-size: 1.3em; font-weight: bold; color: var(--text-dark); margin:5px 0;">72927289</p>
+                        <p style="font-size: 0.8em; color:var(--text-dark); margin:0;">a.n. FANNI KHOIRUL HUDA</p>
                     </div>
                     <button class="copy-btn" onclick="copyText('bni-number')">Salin</button>
                 </div>
@@ -283,45 +265,38 @@
                 <div class="floral-ornament floral-bl"></div>
             </div>
         </div>
+        
+        <footer style="padding: 50px 20px 80px 20px; opacity: 0.8;">
+            <h1 class="nama-mempelai" style="font-size: 3em; color:#fff;">Huda & Ajeng</h1>
+            <p style="font-size: 0.9em; color: var(--silver);">Sampai jumpa di hari bahagia kami.</p>
+        </footer>
     </div>
 
     <script>
-        // SCRIPT: Mengambil Nama Tamu dari Link URL
+        // Set Nama Tamu
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const namaTamu = urlParams.get('to');
-            if (namaTamu) {
-                // Jika ada parameter nama di link, ganti teksnya
-                document.getElementById('nama-tamu-placeholder').innerText = namaTamu;
-            }
+            if (namaTamu) { document.getElementById('nama-tamu-placeholder').innerText = namaTamu; }
         };
 
         let isOpened = false;
 
         function bukaUndangan() {
-            // Jalankan kelas animasi pada cover (glass opens, fade, cinematic zoom)
             document.getElementById('cover-page').classList.add('open');
-            
-            // Buka akses scroll layar utama
             document.body.style.overflowY = 'auto';
-            
-            // Munculkan isi undangan dengan transisi elegan berkelas
             const isiUndangan = document.getElementById('isi-undangan');
             isiUndangan.classList.add('reveal');
             
-            // Putar musik secara aman bersamaan dengan interaksi user
             const music = document.getElementById("bg-music");
-            music.play();
+            music.play().catch(e => console.log("Audio diizinkan"));
             isPlaying = true;
             document.getElementById('music-control').style.display = 'flex';
             
             isOpened = true;
-            reveal(); // Munculkan elemen yang sudah terlihat saat terbuka
+            reveal();
 
-            // Hapus cover secara permanen setelah animasi selesai (2.5 detik) agar link klik di bawahnya aktif
-            setTimeout(() => {
-                document.getElementById('cover-page').style.display = 'none';
-            }, 2500);
+            setTimeout(() => { document.getElementById('cover-page').style.display = 'none'; }, 2000);
         }
 
         function copyText(elementId) {
@@ -330,55 +305,46 @@
             alert("Nomor Rekening Berhasil Disalin!");
         }
 
-        // LOGIKA TOMBOL PLAY/PAUSE MUSIK
         let isPlaying = false;
         function toggleMusic() {
             const music = document.getElementById("bg-music");
             const musicIcon = document.getElementById("music-icon");
-            if (isPlaying) { 
-                music.pause(); 
-                musicIcon.innerHTML = "&#9835;"; // Simbol Nada Play
-            } else { 
-                music.play(); 
-                musicIcon.innerHTML = "&#10074;&#10074;"; // Simbol Pause
-            }
+            if (isPlaying) { music.pause(); musicIcon.innerHTML = "♫"; } 
+            else { music.play(); musicIcon.innerHTML = "❚❚"; }
             isPlaying = !isPlaying;
         }
 
-        // --- SISTEM KERLAP-KERLIP SAAT SCROLL ---
         let lastScrollTop = 0;
         window.addEventListener("scroll", function() {
-            // Hanya aktifkan debu peri jika undangan sudah dibuka
             if (!isOpened) return; 
-
             let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Jika user scroll lumayan jauh (mencegah lag jika terlalu banyak titik)
             if (Math.abs(currentScroll - lastScrollTop) > 15) { 
                 createScrollSparkle();
                 lastScrollTop = currentScroll;
             }
-            // Trigger reveal animation for items
             reveal();
         });
 
         function createScrollSparkle() {
             let sparkle = document.createElement('div');
             sparkle.className = 'scroll-sparkle';
-            // Posisi acak dari kiri ke kanan layar
             sparkle.style.left = Math.random() * 100 + 'vw';
-            // Mulai dari bagian bawah layar (mengikuti area yang sedang dilihat)
             sparkle.style.bottom = '-10px';
-            
             document.body.appendChild(sparkle);
-            
-            // Hapus elemen debu setelah 2 detik agar memori browser tidak penuh
             setTimeout(() => { sparkle.remove(); }, 2000);
         }
 
-        // Reveal Animation on Scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal-item");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
-  
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
