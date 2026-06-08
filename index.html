@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Huda & Ajeng</title>
+    
+    <meta property="og:title" content="The Wedding of Huda & Ajeng">
+    <meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.">
+    <meta property="og:image" content="https://URL-WEBSITE-ANDA/1000506896.jpg">
+    <meta property="og:url" content="https://URL-WEBSITE-ANDA">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dusty-rose: #A86A60;
+            --light-rose: #EED6D3;
+            --rose-gold: #D4AF37;
+            --cream: #FDFBF7;
+            --text-dark: #3E302D;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        /* --- HALAMAN SAMPUL --- */
+        #cover-page {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+
+        /* OVERLAY GELAP: Membuat foto lebih gelap agar tulisan kontras */
+        .cover-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* Warna rgba di bawah ini sudah digelapkan */
+            background: linear-gradient(rgba(15, 10, 8, 0.75), rgba(10, 5, 5, 0.95)), url('1000506896.jpg') center/cover no-repeat;
+            z-index: 1;
+            transition: transform 2.5s cubic-bezier(0.1, 1, 0.1, 1), opacity 2s ease;
+        }
+
+        .gate {
+            position: absolute; top: 0; width: 50%; height: 100%;
+            background-color: #FAF3F0; z-index: 5;
+            display: flex; align-items: center;
+            transition: transform 2.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .gate-left { left: 0; justify-content: flex-end; border-right: 1px solid rgba(214, 175, 55, 0.5); background: linear-gradient(90deg, #F5eae6, #FAF3F0); }
+        .gate-right { right: 0; justify-content: flex-start; border-left: 1px solid rgba(214, 175, 55, 0.5); background: linear-gradient(270deg, #F5eae6, #FAF3F0); }
+
+        .gate-floral { width: 120px; height: 240px; opacity: 0.7; background-size: contain; background-repeat: no-repeat; }
+        .gate-left .gate-floral { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 100"><path fill="%23D4AF37" d="M50,10 Q20,30 50,50 Q10,70 50,90 Q30,50 50,10 Z"/></svg>'); }
+        .gate-right .gate-floral { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 100"><path fill="%23D4AF37" d="M0,10 Q30,30 0,50 Q40,70 0,90 Q10,50 0,10 Z"/></svg>'); }
+
+        .cover-content { position: relative; z-index: 10; color: #fff; transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1s ease; }
+
+        #cover-page.open .gate-left { transform: translateX(-100%); }
+        #cover-page.open .gate-right { transform: translateX(100%); }
+        #cover-page.open .cover-bg { transform: scale(1.15); opacity: 0; }
+        #cover-page.open .cover-content { opacity: 0; transform: translateY(-30px); pointer-events: none; }
+
+        /* --- ISI UNDANGAN --- */
+        #isi-undangan { opacity: 0; transform: translateY(40px); transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1); }
+        #isi-undangan.reveal { opacity: 1; transform: translateY(0); }
+
+        .sparkle { position: absolute; width: 3px; height: 3px; background-color: #FFF; border-radius: 50%; box-shadow: 0 0 10px 2px #FDF5A9, 0 0 20px 2px #D4AF37; animation: twinkle 4s infinite linear; z-index: 99; pointer-events: none; }
+        @keyframes twinkle { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 1; transform: translateY(-20px) scale(1.5); } 100% { opacity: 0; transform: translateY(-40px) scale(0.5); } }
+
+        .floral-corner { position: absolute; width: 250px; height: 250px; background-size: cover; background-repeat: no-repeat; z-index: 10; opacity: 0.8; pointer-events: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23D4AF37" opacity="0.4" d="M10,0 Q30,40 0,60 Q40,30 60,0 Z M50,0 Q60,30 90,10 Q60,50 100,50 Q70,70 90,100 Q50,70 10,90 Q30,60 0,50 Q40,40 50,0 Z"/></svg>'); }
+        .top-left { top: -20px; left: -20px; transform: rotate(0deg); }
+        .top-right { top: -20px; right: -20px; transform: rotate(90deg); }
+        .bottom-left { bottom: -20px; left: -20px; transform: rotate(-90deg); }
+        .bottom-right { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+        h1, h2 { font-family: 'Cinzel', serif; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .nama-mempelai { font-family: 'Great Vibes', cursive; font-size: 4em; text-transform: none; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: normal; margin: 10px 0; }
+        
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(62, 48, 45, 0.7), rgba(168, 106, 96, 0.6)), url('1000506896.jpg') center/cover no-repeat; color: #ffffff; padding: 20px; border: 15px solid var(--cream); box-sizing: border-box; }
+        .hero::after { content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border: 2px solid var(--rose-gold); pointer-events: none; }
+        .hero p.the-wedding { letter-spacing: 6px; font-size: 1.1em; margin-bottom: 0; color: #FDF5A9; font-family: 'Cinzel', serif; }
+        .hero .date { font-size: 1.2em; letter-spacing: 3px; border-top: 1px solid var(--rose-gold); border-bottom: 1px solid var(--rose-gold); padding: 10px 0; margin-top: 20px; }
+
+        .section { padding: 80px 20px; position: relative; }
+        .card { background: #ffffff; border-radius: 15px; padding: 60px 40px; margin: 20px auto; max-width: 650px; position: relative; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15); border: 1px solid var(--light-rose); }
+        .card::before { content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border: 1px dashed var(--rose-gold); pointer-events: none; border-radius: 10px; }
+
+        h2 { color: var(--dusty-rose); font-size: 2.2em; margin-bottom: 10px; }
+        .ornament-divider { width: 150px; height: auto; margin: 10px auto 30px auto; display: block; opacity: 0.7; }
+        h3 { font-family: 'Cinzel', serif; color: var(--text-dark); font-size: 1.5em; margin: 15px 0; }
+        .quote { font-style: italic; max-width: 600px; margin: 0 auto; line-height: 2; color: var(--dusty-rose); font-size: 1.1em; }
+
+        .bank-account { background: linear-gradient(145deg, #ffffff, #FAF3F0); padding: 25px; border-radius: 15px; margin: 20px 0; border-left: 5px solid var(--rose-gold); box-shadow: 5px 5px 15px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .bank-details p { margin: 5px 0; }
+        .copy-btn { background: var(--gold-gradient); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: bold; text-transform: uppercase; font-size: 0.8em; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4); transition: 0.3s; }
+        
+        #music-control { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: var(--gold-gradient); border: 3px solid #fff; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5); z-index: 100; }
+        #music-icon { color: #fff; font-size: 1.5em; }
+
+        #btn-buka { padding: 16px 45px; font-family: 'Cinzel', serif; font-size: 1.1em; font-weight: 700; letter-spacing: 1px; background: var(--gold-gradient); color: #3E302D; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 25px rgba(212, 175, 55, 0.5); transition: all 0.3s ease; animation: pulse-btn 2s infinite; }
+        #btn-buka:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7); }
+        @keyframes pulse-btn { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+    </style>
+</head>
+<body>
+
+    <div id="cover-page">
+        <div class="cover-bg"></div>
+        <div class="gate gate-left"><div class="gate-floral"></div></div>
+        <div class="gate gate-right"><div class="gate-floral"></div></div>
+        
+        <div class="cover-content">
+            <p style="letter-spacing: 6px; font-size: 1.1em; color: #FDF5A9; margin-bottom: 0; font-family: 'Cinzel', serif;">THE WEDDING OF</p>
+            <h1 class="nama-mempelai" style="font-size: 5.5em; margin: 5px 0 25px 0;">Huda & Ajeng</h1>
+            
+            <div style="margin-bottom: 35px;">
+                <p style="font-style: italic; color: #EED6D3; font-size: 0.95em; letter-spacing: 1px; margin-bottom: 5px;">Kepada Yth.</p>
+                <h2 id="nama-tamu-placeholder" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 1.5em; margin: 0; letter-spacing: 1px;">Bapak / Ibu / Saudara / i</h2>
+            </div>
+
+            <button id="btn-buka" onclick="bukaUndangan()">
+                &#10048; Buka Undangan &#10048;
+            </button>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="janji-suci-jazz.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" onclick="toggleMusic()" style="display: none;">
+        <span id="music-icon">&#10074;&#10074;</span>
+    </div>
+
+    <div id="isi-undangan">
+        <div class="hero">
+            <div class="floral-corner top-left"></div>
+            <div class="floral-corner top-right"></div>
+            
+            <p class="the-wedding">THE WEDDING OF</p>
+            <h1 class="nama-mempelai">Huda & Ajeng</h1>
+            <p class="date">25 . 12 . 2026 &nbsp;&bull;&nbsp; 26 . 12 . 2026</p>
+        </div>
+
+        <div class="section">
+            <div class="card">
+                <svg class="ornament-divider" viewBox="0 0 100 20" fill="none"><path d="M10,10 L45,10 M55,10 L90,10 M50,5 L55,10 L50,15 L45,10 Z" stroke="#D4AF37" stroke-width="2"/></svg>
+                <div class="quote">
+                    <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..."</p>
+                    <p><strong>(QS. Ar-Rum: 21)</strong></p>
+                </div>
+                <svg class="ornament-divider" viewBox="0 0 100 20" fill="none"><path d="M10,10 L45,10 M55,10 L90,10 M50,5 L55,10 L50,15 L45,10 Z" stroke="#D4AF37" stroke-width="2"/></svg>
+            </div>
+        </div>
+
+        <div class="section" style="background-color: var(--light-rose);">
+            <h2>Sang Mempelai</h2>
+            <div class="card">
+                <h1 class="nama-mempelai" style="font-size: 3.5em;">Fanni Khoirul Huda</h1>
+                <p>Putra dari<br><strong>Bapak Agus Wiyono & Ibu Erna Hastuti Ningsih</strong></p>
+                <h3 style="color: var(--rose-gold); font-size: 2em; font-family: 'Great Vibes', cursive; margin: 20px 0;">dengan</h3>
+                <h1 class="nama-mempelai" style="font-size: 3.5em;">Ajeng Dianti Ratna</h1>
+                <p>Putri dari<br><strong>Bapak Dian Dwi Setyobudi & Ibu Susiati</strong></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="floral-corner bottom-left"></div>
+            <div class="floral-corner bottom-right"></div>
+            <h2>Jadwal Bahagia</h2>
+            <div class="card">
+                <h3>Akad Nikah</h3>
+                <p style="font-size: 1.2em; color: var(--dusty-rose);"><strong>Jumat, 25 Desember 2026</strong></p>
+                <p>Lokasi: Rumah Ajeng Klepon</p>
+                <br><hr style="border-top: 1px dashed var(--rose-gold); margin: 20px 0;"><br>
+                <h3>Resepsi Pernikahan</h3>
+                <p style="font-size: 1.2em; color: var(--dusty-rose);"><strong>Sabtu, 26 Desember 2026</strong></p>
+                <p>Lokasi: Rumah Ajeng Klepon</p>
+            </div>
+        </div>
+
+        <div class="section" style="background-color: #F8F1EB;">
+            <h2>Tanda Kasih</h2>
+            <div class="card">
+                <p>Doa restu Anda merupakan karunia terindah. Anda dapat mengirimkan kado cashless melalui rekening berikut:</p>
+                <div class="bank-account">
+                    <div class="bank-details">
+                        <p style="color: #00529C;"><strong>Bank BRI</strong></p>
+                        <p id="bri-number" style="font-size: 1.5em; font-weight: bold; font-family: 'Cinzel', serif;">202828299</p>
+                        <p>a.n. AJENG DIANTI RATNA</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyText('bri-number')">Salin</button>
+                </div>
+                <div class="bank-account">
+                    <div class="bank-details">
+                        <p style="color: #F06110;"><strong>Bank BNI</strong></p>
+                        <p id="bni-number" style="font-size: 1.5em; font-weight: bold; font-family: 'Cinzel', serif;">72927289</p>
+                        <p>a.n. FANNI KHOIRUL HUDA</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyText('bni-number')">Salin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // SCRIPT: Mengambil Nama Tamu dari Link URL
+        window.onload = function() {
+            createSparkles();
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const namaTamu = urlParams.get('to');
+            
+            if (namaTamu) {
+                // Jika ada parameter nama di link, ganti teksnya
+                document.getElementById('nama-tamu-placeholder').innerText = namaTamu;
+            }
+        };
+
+        function bukaUndangan() {
+            document.getElementById('cover-page').classList.add('open');
+            document.body.style.overflowY = 'auto';
+            const isiUndangan = document.getElementById('isi-undangan');
+            isiUndangan.classList.add('reveal');
+            
+            const music = document.getElementById("bg-music");
+            music.play();
+            isPlaying = true;
+            document.getElementById('music-control').style.display = 'flex';
+
+            setTimeout(() => {
+                document.getElementById('cover-page').style.display = 'none';
+            }, 2500);
+        }
+
+        function createSparkles() {
+            const container = document.body;
+            for (let i = 0; i < 45; i++) {
+                let sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 4 + 's';
+                sparkle.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                container.appendChild(sparkle);
+            }
+        }
+
+        function copyText(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy);
+            alert("Nomor Rekening Berhasil Disalin!");
+        }
+
+        let isPlaying = false;
+        function toggleMusic() {
+            const music = document.getElementById("bg-music");
+            const musicIcon = document.getElementById("music-icon");
+            if (isPlaying) { 
+                music.pause(); 
+                musicIcon.innerHTML = "&#9835;"; 
+            } else { 
+                music.play(); 
+                musicIcon.innerHTML = "&#10074;&#10074;"; 
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
