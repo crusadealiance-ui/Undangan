@@ -7,8 +7,7 @@
     
     <meta property="og:title" content="The Wedding of Huda & Ajeng">
     <meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami di Blitar.">
-    <meta property="og:image" content="https://URL-WEBSITE-ANDA/1000506896.jpg">
-    <meta property="og:url" content="https://URL-WEBSITE-ANDA">
+    <meta property="og:image" content="1000506896.jpg">
     <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -32,15 +31,12 @@
             text-align: center;
             overflow-x: hidden;
             overflow-y: hidden;
-            /* Motif background halus untuk bagian dalam */
             background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="%23D4AF37" stroke-width="0.5" fill="none" opacity="0.1"/></svg>');
         }
 
-        /* --- HALAMAN SAMPUL BARU (GLASSMORPHISM) --- */
         #cover-page {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 9999; display: flex; justify-content: center; align-items: center;
-            /* Animasi Slide Up & Fade Out saat dibuka */
             transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
         }
 
@@ -52,17 +48,16 @@
 
         .cover-glass-frame {
             position: relative; z-index: 10;
-            background: rgba(255, 255, 255, 0.05); /* Efek Kaca Blur */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 2px solid rgba(212, 175, 55, 0.5); /* Bingkai Emas Transparan */
+            border: 2px solid rgba(212, 175, 55, 0.5);
             border-radius: 20px;
             padding: 50px 30px;
             width: 85%; max-width: 450px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        /* Dekorasi Sudut pada Bingkai Kaca */
         .cover-glass-frame::before, .cover-glass-frame::after {
             content: ''; position: absolute; width: 40px; height: 40px; border: 2px solid var(--rose-gold); pointer-events: none;
         }
@@ -70,17 +65,14 @@
         .cover-glass-frame::after { bottom: 15px; right: 15px; border-top: none; border-left: none; }
 
         .cover-content { color: #fff; }
-
         #cover-page.open { transform: translateY(-100vh); opacity: 0; pointer-events: none; }
 
-        /* --- ISI UNDANGAN --- */
         #isi-undangan { opacity: 0; transform: scale(0.95); transition: opacity 2s ease 0.5s, transform 2s ease 0.5s; }
         #isi-undangan.reveal { opacity: 1; transform: scale(1); }
 
         .sparkle { position: absolute; width: 3px; height: 3px; background-color: #FFF; border-radius: 50%; box-shadow: 0 0 10px 2px #FDF5A9, 0 0 20px 2px #D4AF37; animation: twinkle 4s infinite linear; z-index: 99; pointer-events: none; }
         @keyframes twinkle { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 1; transform: translateY(-20px) scale(1.5); } 100% { opacity: 0; transform: translateY(-40px) scale(0.5); } }
 
-        /* Hiasan Ekstra pada Dalam Undangan */
         h1, h2 { font-family: 'Cinzel', serif; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
         .nama-mempelai { font-family: 'Great Vibes', cursive; font-size: 4.5em; text-transform: none; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: normal; margin: 10px 0; }
         
@@ -93,20 +85,16 @@
 
         .section { padding: 80px 20px; position: relative; }
         
-        /* Kartu dengan Hiasan Tambahan */
         .card { background: #ffffff; border-radius: 10px; padding: 50px 30px; margin: 20px auto; max-width: 600px; position: relative; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1); border: 2px solid var(--light-rose); }
         .card::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid var(--rose-gold); opacity: 0.3; pointer-events: none; }
         
-        /* Ornamen Mahkota Bunga pada Atas Kartu */
         .card-crown { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 80px; height: 50px; background-color: var(--cream); display: flex; justify-content: center; align-items: center; border-radius: 50px; }
         .card-crown svg { width: 40px; height: auto; }
 
         h2 { color: var(--dusty-rose); font-size: 2em; margin-bottom: 10px; }
-        .ornament-divider { width: 150px; height: auto; margin: 10px auto 20px auto; display: block; opacity: 0.7; }
         h3 { font-family: 'Cinzel', serif; color: var(--text-dark); font-size: 1.5em; margin: 15px 0; }
         .quote { font-style: italic; max-width: 500px; margin: 0 auto; line-height: 2; color: var(--dusty-rose); font-size: 1em; }
 
-        /* Desain QR Code & Map */
         .qr-wrapper { background: #fff; padding: 15px; border-radius: 10px; display: inline-block; border: 1px solid var(--rose-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin: 20px 0; }
         .qr-image { width: 150px; height: 150px; }
         .map-btn { display: inline-block; text-decoration: none; background: var(--gold-gradient); color: #fff; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-family: 'Montserrat', sans-serif; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); transition: 0.3s; margin-top: 10px; }
@@ -127,7 +115,6 @@
 
     <div id="cover-page">
         <div class="cover-bg"></div>
-        
         <div class="cover-glass-frame">
             <div class="cover-content">
                 <p style="letter-spacing: 4px; font-size: 1em; color: #FDF5A9; margin-bottom: 0; font-family: 'Cinzel', serif;">THE WEDDING OF</p>
@@ -150,7 +137,7 @@
     </audio>
 
     <div id="music-control" onclick="toggleMusic()" style="display: none;">
-        <span id="music-icon">&#10074;&#10074;</span>
+        <span id="music-icon">❚❚</span>
     </div>
 
     <div id="isi-undangan">
@@ -208,11 +195,11 @@
                 <p>Banjarjo Bangsri RT 2 RW 11<br>Kecamatan Nglegok, Kabupaten Blitar</p>
                 
                 <div class="qr-wrapper">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=3E302D&data=https://maps.app.goo.gl/992a3PQUDwbVCVTy5" alt="QR Code Lokasi" class="qr-image">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.app.goo.gl/992a3PQUDwbVCVTy5" alt="QR Code Lokasi" class="qr-image">
                 </div>
                 <br>
                 <a href="https://maps.app.goo.gl/992a3PQUDwbVCVTy5" target="_blank" class="map-btn">
-                    &#128205; Buka Google Maps
+                    📍 Buka Google Maps
                 </a>
             </div>
         </div>
@@ -289,181 +276,8 @@
         function toggleMusic() {
             const music = document.getElementById("bg-music");
             const musicIcon = document.getElementById("music-icon");
-            if (isPlaying) { music.pause(); musicIcon.innerHTML = "&#9835;"; } 
-            else { music.play(); musicIcon.innerHTML = "&#10074;&#10074;"; }
-            isPlaying = !isPlaying;
-        }
-    </script>
-</body>
-</html>
-        #music-icon { color: #fff; font-size: 1.5em; }
-
-        #btn-buka { padding: 16px 45px; font-family: 'Cinzel', serif; font-size: 1.1em; font-weight: 700; letter-spacing: 1px; background: var(--gold-gradient); color: #3E302D; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 25px rgba(212, 175, 55, 0.5); transition: all 0.3s ease; animation: pulse-btn 2s infinite; }
-        #btn-buka:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7); }
-        @keyframes pulse-btn { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
-    </style>
-</head>
-<body>
-
-    <div id="cover-page">
-        <div class="cover-bg"></div>
-        <div class="gate gate-left"><div class="gate-floral"></div></div>
-        <div class="gate gate-right"><div class="gate-floral"></div></div>
-        
-        <div class="cover-content">
-            <p style="letter-spacing: 6px; font-size: 1.1em; color: #FDF5A9; margin-bottom: 0; font-family: 'Cinzel', serif;">THE WEDDING OF</p>
-            <h1 class="nama-mempelai" style="font-size: 5.5em; margin: 5px 0 25px 0;">Huda & Ajeng</h1>
-            
-            <div style="margin-bottom: 35px;">
-                <p style="font-style: italic; color: #EED6D3; font-size: 0.95em; letter-spacing: 1px; margin-bottom: 5px;">Kepada Yth.</p>
-                <h2 id="nama-tamu-placeholder" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 1.5em; margin: 0; letter-spacing: 1px;">Bapak / Ibu / Saudara / i</h2>
-            </div>
-
-            <button id="btn-buka" onclick="bukaUndangan()">
-                &#10048; Buka Undangan &#10048;
-            </button>
-        </div>
-    </div>
-
-    <audio id="bg-music" loop>
-        <source src="janji-suci-jazz.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="music-control" onclick="toggleMusic()" style="display: none;">
-        <span id="music-icon">&#10074;&#10074;</span>
-    </div>
-
-    <div id="isi-undangan">
-        <div class="hero">
-            <div class="floral-corner top-left"></div>
-            <div class="floral-corner top-right"></div>
-            
-            <p class="the-wedding">THE WEDDING OF</p>
-            <h1 class="nama-mempelai">Huda & Ajeng</h1>
-            <p class="date">25 . 12 . 2026 &nbsp;&bull;&nbsp; 26 . 12 . 2026</p>
-        </div>
-
-        <div class="section">
-            <div class="card">
-                <svg class="ornament-divider" viewBox="0 0 100 20" fill="none"><path d="M10,10 L45,10 M55,10 L90,10 M50,5 L55,10 L50,15 L45,10 Z" stroke="#D4AF37" stroke-width="2"/></svg>
-                <div class="quote">
-                    <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..."</p>
-                    <p><strong>(QS. Ar-Rum: 21)</strong></p>
-                </div>
-                <svg class="ornament-divider" viewBox="0 0 100 20" fill="none"><path d="M10,10 L45,10 M55,10 L90,10 M50,5 L55,10 L50,15 L45,10 Z" stroke="#D4AF37" stroke-width="2"/></svg>
-            </div>
-        </div>
-
-        <div class="section" style="background-color: var(--light-rose);">
-            <h2>Sang Mempelai</h2>
-            <div class="card">
-                <h1 class="nama-mempelai" style="font-size: 3.5em;">Fanni Khoirul Huda</h1>
-                <p>Putra dari<br><strong>Bapak Agus Wiyono & Ibu Erna Hastuti Ningsih</strong></p>
-                <h3 style="color: var(--rose-gold); font-size: 2em; font-family: 'Great Vibes', cursive; margin: 20px 0;">dengan</h3>
-                <h1 class="nama-mempelai" style="font-size: 3.5em;">Ajeng Dianti Ratna</h1>
-                <p>Putri dari<br><strong>Bapak Dian Dwi Setyobudi & Ibu Susiati</strong></p>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="floral-corner bottom-left"></div>
-            <div class="floral-corner bottom-right"></div>
-            <h2>Jadwal Bahagia</h2>
-            <div class="card">
-                <h3>Akad Nikah</h3>
-                <p style="font-size: 1.2em; color: var(--dusty-rose);"><strong>Jumat, 25 Desember 2026</strong></p>
-                <p>Lokasi: Rumah Ajeng Klepon</p>
-                <br><hr style="border-top: 1px dashed var(--rose-gold); margin: 20px 0;"><br>
-                <h3>Resepsi Pernikahan</h3>
-                <p style="font-size: 1.2em; color: var(--dusty-rose);"><strong>Sabtu, 26 Desember 2026</strong></p>
-                <p>Lokasi: Rumah Ajeng Klepon</p>
-            </div>
-        </div>
-
-        <div class="section" style="background-color: #F8F1EB;">
-            <h2>Tanda Kasih</h2>
-            <div class="card">
-                <p>Doa restu Anda merupakan karunia terindah. Anda dapat mengirimkan kado cashless melalui rekening berikut:</p>
-                <div class="bank-account">
-                    <div class="bank-details">
-                        <p style="color: #00529C;"><strong>Bank BRI</strong></p>
-                        <p id="bri-number" style="font-size: 1.5em; font-weight: bold; font-family: 'Cinzel', serif;">202828299</p>
-                        <p>a.n. AJENG DIANTI RATNA</p>
-                    </div>
-                    <button class="copy-btn" onclick="copyText('bri-number')">Salin</button>
-                </div>
-                <div class="bank-account">
-                    <div class="bank-details">
-                        <p style="color: #F06110;"><strong>Bank BNI</strong></p>
-                        <p id="bni-number" style="font-size: 1.5em; font-weight: bold; font-family: 'Cinzel', serif;">72927289</p>
-                        <p>a.n. FANNI KHOIRUL HUDA</p>
-                    </div>
-                    <button class="copy-btn" onclick="copyText('bni-number')">Salin</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // SCRIPT: Mengambil Nama Tamu dari Link URL
-        window.onload = function() {
-            createSparkles();
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            const namaTamu = urlParams.get('to');
-            
-            if (namaTamu) {
-                // Jika ada parameter nama di link, ganti teksnya
-                document.getElementById('nama-tamu-placeholder').innerText = namaTamu;
-            }
-        };
-
-        function bukaUndangan() {
-            document.getElementById('cover-page').classList.add('open');
-            document.body.style.overflowY = 'auto';
-            const isiUndangan = document.getElementById('isi-undangan');
-            isiUndangan.classList.add('reveal');
-            
-            const music = document.getElementById("bg-music");
-            music.play();
-            isPlaying = true;
-            document.getElementById('music-control').style.display = 'flex';
-
-            setTimeout(() => {
-                document.getElementById('cover-page').style.display = 'none';
-            }, 2500);
-        }
-
-        function createSparkles() {
-            const container = document.body;
-            for (let i = 0; i < 45; i++) {
-                let sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 4 + 's';
-                sparkle.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                container.appendChild(sparkle);
-            }
-        }
-
-        function copyText(elementId) {
-            const textToCopy = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(textToCopy);
-            alert("Nomor Rekening Berhasil Disalin!");
-        }
-
-        let isPlaying = false;
-        function toggleMusic() {
-            const music = document.getElementById("bg-music");
-            const musicIcon = document.getElementById("music-icon");
-            if (isPlaying) { 
-                music.pause(); 
-                musicIcon.innerHTML = "&#9835;"; 
-            } else { 
-                music.play(); 
-                musicIcon.innerHTML = "&#10074;&#10074;"; 
-            }
+            if (isPlaying) { music.pause(); musicIcon.innerHTML = "♫"; } 
+            else { music.play(); musicIcon.innerHTML = "❚❚"; }
             isPlaying = !isPlaying;
         }
     </script>
